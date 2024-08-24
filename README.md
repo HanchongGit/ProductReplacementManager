@@ -30,14 +30,6 @@ The following packages are required:
 - tkcalendar
 - openpyxl
 
-### Generate `requirements.txt`
-
-If you need to generate a `requirements.txt` file:
-
-```bash
-pip freeze > requirements.txt
-```
-
 ## Usage
 
 ### Running the Application
@@ -63,35 +55,6 @@ python app.py
 
 4. **Batch Process Tab**:
     - **Load and Process File**: Load a CSV or Excel file, find the latest version and date for each product, and save the updated file.
-
-### Testing
-
-Synthetic data for testing can be generated using the following script:
-
-```python
-import pandas as pd
-import random
-from datetime import datetime, timedelta
-
-def generate_synthetic_data(num_records=50):
-    products = [f"Product_{{i}}" for i in range(1, num_records + 1)]
-    data = []
-
-    for i in range(num_records):
-        old_product = products[i]
-        new_product = products[i + 1] if i < num_records - 1 else old_product
-        date = datetime.now() - timedelta(days=random.randint(1, 100))
-        data.append([old_product, new_product, date.strftime('%Y-%m-%d')])
-
-    df = pd.DataFrame(data, columns=["Old Product", "New Product", "Date"])
-    return df
-
-df_synthetic = generate_synthetic_data(num_records=20)
-df_synthetic.to_csv("synthetic_replacement_data.csv", index=False)
-df_synthetic.to_excel("synthetic_replacement_data.xlsx", index=False)
-```
-
-This script creates a CSV and Excel file with synthetic product replacement data for testing purposes.
 
 ## License
 
